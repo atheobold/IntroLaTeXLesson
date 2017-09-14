@@ -1,0 +1,350 @@
+\documentclass{article}
+
+\usepackage{color, amsmath, graphics}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\section*{Getting Started}
+
+\LaTeX, which is pronounced Lah-tech or Lay-tech, is a document preparation system for high-quality typesetting. It is most often used for medium-to-large technical or scientific documents but it can be used for almost any form of publishing. Some of the perks of using \LaTeX are:
+\begin{itemize}
+\item Typesetting journal articles, technical reports, books, and slide presentations 
+\item Control over large documents containing sectioning, cross-references, tables and figures
+\item Typesetting of complex mathematical formulas
+\item Advanced typesetting of mathematics with AMS-LaTeX 
+\item Automatic generation of bibliographies and indexes
+\item Multi-lingual typesetting
+\item Inclusion of artwork, and process or spot color 
+\item Using PostScript or Metafont fonts
+\end{itemize}
+
+
+\vspace{1cm}
+
+\noindent We will be making use of the \textbf{free} LaTeX software \emph{ShareLateX}. You have already created an account, so enter your username (or email) and password to log-in. This brings us to the projects page where all your \LaTeX projects will be stored. To create a new project, click the {\color{red} red} new project button, you now have a number of options: 
+
+\begin{itemize} 
+\item you can create a blank project, 
+\item see an example project, 
+\item upload an existing \LaTeX project or
+\item start building from one of their helpful templates.
+\end{itemize}
+
+\vspace{0.5cm} 
+
+We are going to select a \textbf{blank project}. Now name your project and hit \textbf{create}. This brings us to the editor. 
+\begin{itemize}
+\item The \textbf{left-hand panel} is where you manage all the files associated with this project.  
+\item The \textbf{center panel} is the code editor where you write the document. 
+\item The \textbf{right-hand panel} is the preview area.  
+\end{itemize} 
+
+\pagebreak
+
+\section*{Basic Layout: Preamble and Document}
+You will notice that \emph{ShareLaTeX} has already given you some code by default. Let's go through each of these lines and discuss what they do. Each statement starting with a backslash is a \LaTeX command, \emph{ShareLaTeX} has nicely color coded them in blue to make them easy to recognize.
+
+\subsection*{Preamble}
+\begin{itemize}
+\item The {\tt{documentclass{}}} command tells \LaTeX what type of document you want to produce, popular options include article, book, report, slides and letter. 
+
+\item The command ({\tt{usepackage[utf8]{inputenc}}}) on the second line sets \LaTeX up to be able to use accented characters. 
+
+\item The {\tt{title{}}} command tells \LaTeX the title of your document. \textbf{Change this by placing a new title in the curly brackets.}  
+
+\item The next two commands give \LaTeX information regarding the document's author and writing date \textbf{Update these as well}.
+
+\end{itemize}
+
+\subsection*{Document}
+
+\begin{itemize}
+\item The {\tt{begin{}}} command on line 8 tells \LaTeX we want to start writing the document. 
+
+\item The {\tt{maketitle{}}} command puts a title into the document using the information we entered in the preamble.  
+
+\item The {\tt{section{}}} command is used to help you break up your document into logical parts. This first section has been named Introduction and it was labeled with a number 1 (since it's the first section).  
+
+\item Line 14 is the {\tt{end{}}} command which tells \LaTeX we have finished writing the document. \textbf{Every time you use a {\tt{begin{}}} command you must also remember to use an {\tt{end{}}} command later!}
+
+\end{itemize}
+
+We can now see what our document looks like by clicking the {\color{blue} blue} recompile button. Hovering your mouse over the left hand upper corner of the preview panel gives you options to zoom in and out on your document to enable you to check everything is as expected. Double clicking on specific lines in the document will highlight the line(s) in the \LaTeX code that generated that line in the document.  
+
+So there you have it, your first \LaTeX document! 
+
+\section*{Packages}
+
+\LaTeX has many built in functions, but often times it is handy to use additional functions housed within \LaTeX \emph{packages}. To import a package, you simple add the {\tt{usepackage{}}} directive to the preamble of your document.  \\
+
+Three packages I often find myself using are, {\tt{amsmath, graphicx,}} and {\tt{multicol}}. Let's go ahead and source these into our \LaTeX document, and we will see how to use them shortly. 
+
+\section*{Typesetting Math}
+
+There are two main modes of typesetting math in \LaTeX, embedding the math directly by \emph{encapsulating} it in \emph{dollar signs}, or using a predefined \emph{math environment}. 
+\subsection*{Inline Math}
+
+The use of {\tt{\$}} for inline math environments is common, but it is difficult for the computer to track a missing {\tt{\$}}. Therefore, I advocate for the use of the \emph{displaymath} environment, using 
+\begin{verbatim} 
+\[\] 
+\end{verbatim} for inline math environments. \\
+
+\emph{Example:} This formula 
+\begin{verbatim}
+$f(x) = x^2$
+\end{verbatim}
+is an example. Or we could use,
+\begin{verbatim}
+\[f(x) = x^2\]
+\end{verbatim} 
+instead.
+
+\newpage
+
+\subsection*{Equations and Align}
+
+Arguably the most useful \emph{math environments} are the \emph{equation environment} for single equations and the \emph{align environment} for multiple equations. 
+
+\begin{verbatim}
+\begin{equation}
+  1 + 2 = 3 
+\end{equation}
+
+\begin{equation*}
+  1 = 3 - 2
+\end{equation*}
+
+\begin{align*}
+  1 + 2 &= 3\\
+  1 &= 3 - 2
+\end{align*}
+
+\begin{align*}
+  f(x) &= x^2\\
+  g(x) &= \frac{1}{x}\\
+  F(x) &= \int^a_b \frac{1}{3}x^3
+\end{align*}
+
+\begin{equation*}
+\frac{1}{\sqrt{x}}
+\end{equation*}
+
+\end{verbatim}
+
+\newpage
+
+\section*{Tables and Matrices}
+
+To insert tables in \LaTeX we use the \emph{tabular environment}. Here are the steps to assembling a table:
+
+\begin{itemize}
+\item add {\tt{begin\{tabular\}}} and {\tt{end\{tabular\}}} commands to your document
+\item specify the column format by inserting {\tt\{\}} to the right of the {\tt{begin\{tabular\}}} command,
+  \begin{itemize}
+  \item a lower case r is right justified,
+  \item a lower case c is center justified, and
+  \item a lower case l is left justified.
+  \end{itemize}
+\item add lines between columns using the {\tt{|}} (bar) symbol between the letters
+\item when entering the elements of the table,
+  \begin{itemize}
+  \item start each row on a new line,
+  \item separate column entries with an ampersand {\tt{\&}}, and
+  \item finish each row (except the last) with a double backslash ({\tt{$\backslash \backslash$}}). 
+  \end{itemize}
+\end{itemize}
+
+\begin{verbatim}
+\begin{tabular}{l | c | c | C | c | l}
+Participant & Swim & Cycle & Run & Total & Additional Comments \\
+John & 13:00 & 24:15 & 18:34 & 55:53 \\
+Norman & 8:00 & 22:45 & 23:02 & 53:47 & Winner \\
+Alex & 14:00 & 28:00 & n/a & n/a & Injured \\
+Sarah & 9:22 & 21:00 & 24:03 & 54:35 
+\end{tabular}
+\end{verbatim}
+
+You have assembled your first \LaTeX table! Often, just like with images, we want more control over positioning and we may want to add a caption and label. To do this we use the \emph{table environment} (which is similar to the environment we will see for images). To put our existing table in this environment, we simply enclose the above code in {\tt{begin\{table\}}} and {\tt{end\{table\}}} commands. 
+
+\begin{verbatim}
+\begin{table}[h]
+\begin{tabular}{l | c | c | C | c | l}
+Participant & Swim & Cycle & Run & Total & Additional Comments \\
+\hline 
+John & 13:00 & 24:15 & 18:34 & 55:53 \\
+Norman & 8:00 & 22:45 & 23:02 & 53:47 & Winner \\
+Alex & 14:00 & 28:00 & n/a & n/a & Injured \\
+Sarah & 9:22 & 21:00 & 24:03 & 54:35 
+\end{tabular}
+\caption{Triathlon Results}
+\label{tab:tri}
+\end{table}
+\end{verbatim}
+
+\subsection*{Matrices}
+
+Matrices use syntax similar to tables. This is an example of using functions within the {\tt{amsmath}} package. A matrix needs to be in a math environment, where we could use the equation (or inline) environments from before. Let's practice with the inline \emph{displaymath} environment. With matrices we \textbf{don't} need to declare how many columns we use, we can simply start adding entries. 
+
+Like tables, we enter each row on a new line, separating column entries with an ampersand, and separate rows using a double backslash. \\ 
+
+To change the brackets surrounding the matrix, we change the environment. The \emph{pmatrix} environment uses parenthesis, the \emph{bmatrix} uses square brackets, \emph{Bmatrix} with a capital B uses curly brackets, \emph{vmatrix} uses vertical lines and \emph{Vmatrix} with a capital V uses double vertical lines.  
+
+Let's create the matrix displayed below. \\
+
+\[
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{bmatrix}
+\]
+
+Got it? Here's a challenge! \\
+
+\[
+\begin{pmatrix}
+\begin{matrix}
+a & b \\
+c & d
+\end{matrix} & 0 \\
+0 & \begin{matrix}
+a & b \\
+c & d
+\end{matrix}
+\end{pmatrix}
+\]
+
+\newpage
+
+\section*{Figures}
+
+Often (for me) or from time to time, it is necessary to add pictures to your documents. Using \LaTeX all pictures will be automatically indexed and tagged with successive numbers. To import images we will use function (environment) from the {\tt{graphicx}} package. 
+
+\begin{verbatim}
+\begin{figure}
+  \includegraphics[width = \linewidth]{boat.jpg}
+  \caption{A boat.}
+  \label{fig:boat1}
+\end{figure}
+
+Figure \ref{fig:boat1} shows a boat.
+\end{verbatim}
+
+\noindent The \emph{figure environment} takes care of the numbering and positioning of the image for you. 
+To include a figure you need to
+\begin{itemize}
+\item use the {\tt{includegraphics\{\}}} command, 
+\item insert the name (or path) to your image in the parenthesis  
+\item (optional) insert the image size in the brackets ([scale = 0.5] will shrink it in half)
+\item (optional) a caption for the figure
+\item (optional) a label for the image (if you are to reference it later). 
+\end{itemize}
+
+\noindent As I mentioned before the brackets contain the path to the image. In this case the image is stored in the \textbf{same} directory as my .tex file, so I simply put boat.jpg here to include it. By default \LaTeX looks for .jpg files, so omitting the suffix would also work. For large documents, you probably want to store image files in a different folder, say we created a folder images, then we would simply write images/boat.jpg into the braces. \\
+ 
+\noindent Setting the float by adding [h!] behind the figure environment {\tt{begin}} tag will force the figure to be shown at the location in the document. Possible values are:
+
+\begin{itemize}
+\item h (here) - same location
+\item t (top) - top of page
+\item b (bottom) - bottom of page
+\item p (page) - on an extra page
+\item ! (override) - will force the specified location
+\end{itemize}
+
+\noindent I typically use the [h!] option. The float package ({\tt{usepackage\{float\}}}) allows to set the option to [H], which is even stricter than [h!].
+ 
+\pagebreak
+
+\section*{Footnotes}
+
+One of the benifits of using \LaTeX is how easy footnotes can be added and referred to. How to use footnotes? \LaTeX offers the {\tt{footnote}} command and referencing works using the {\tt{label}} and {\tt{ref}} commands.
+
+\begin{verbatim}
+This is some example text \footnote{\label{myfootnote} Hello footnote}.
+\end{verbatim}
+
+After compilation you will see the footnote appearing on the bottom of your page. It's imperative, that the label is \emph{contained} within the footnote itself, otherwise the label will refer to the section (or subsection). Footnotes are numbered automatically. If you want to refer to them later on, you can use the {\tt{ref}} command as follows:
+
+\begin{verbatim}
+I'm referring to footnote \ref{myfootnote}.
+\end{verbatim}
+
+\pagebreak
+
+\section*{Table of Contents} 
+Generating a table of contents can be done with a few simple commands. \LaTeX will use the section headings to create the table of contents and there are commands to create a list of figures and a list of tables as well. To create a table of contents, you add a {\tt{tableofcontents}} command after {\tt{begin\{document\}}}. The table of contents will automatically beplaced on its own page, at the beginning of the document.  
+
+You can also add a table of content of the list of figures and the tables that you have in your document. This I typically place in the {\tt{appendix}} environment, like so
+
+\begin{verbatim}
+\begin{appendix}
+  \listoffigures
+  \listoftables
+\end{appendix}
+\end{verbatim}
+
+\pagebreak
+
+\section*{Bibliography}  
+
+To make a bibliography in \LaTeX you have many different options. You can use the {\tt{bibliography}} environment \textbf{in} the document, or you can use either bibtex or biblatex (both external programs) to create the bibliography. \\ 
+
+For my first years using \LaTeX I exclusively made my bibliography within my \LaTeX document. Here's an example of a bibliography of mine:
+
+\begin{verbatim}
+\begin{thebibliography}{99}
+\bibitem{rosenrub1}
+{\footnotesize 
+Rosenbaum, P. R. \& Rubin, D. B. (1983). 
+The central role of the propensity score in observational studies for causal effects.  
+\textit{Biometrika}, 70(1), 41-55.}
+
+\bibitem{rosenrub2}
+{\footnotesize Rosenbaum, P. R. \& Rubin, D. B. (1984). 
+Reducing Bias in Observational Studies Using Sub-classification the Propensity Score.  
+\textit{Journal of the American Statistical Association}, 79(387), 516-524.}
+
+\bibitem{gelman}
+{\footnotesize
+Gelman, A., Hill, J.(2007). Data Analysis Using Regression and Multilevel/Hierarchical 
+Models. Cambridge University Press. }
+
+\end{thebibliography}
+\end{verbatim}
+
+\begin{itemize}
+
+\item To start this type of bibliography you use the {\tt{begin\{thebibliography\}}} command. 
+
+\item The argument directly next to this command ({\tt{\{99\}}}) loosely tells \LaTeX how much space it should allocate for your bibliography. 
+
+\item I typically default to using {\tt{\{99\}}}, unless I know my bibliography is going to be short and then I'll use {\tt{\{9\}}}.  
+
+\item The {\tt{bibitem}} command begins a new bibliography entry. 
+  \begin{itemize}
+  \item In the {\tt{\{\}}} after {\tt{bibitem}} you place the name that you will use when referencing this bibliography item in the document,
+  \item Following the {\tt{bibitem}} command, you place the reference, where you are required to format it yourself.
+  \end{itemize}
+
+\item Once you have completed your bibliography, you are required to close with an {\tt{end\{thebibliography\}}} command. 
+\end{itemize}
+
+\pagebreak
+
+Using a \emph{.bib} file requires you to save your bibliography entries externally and then import them into \LaTeX. \\ 
+
+Much literature exists on how to detect plagiarism in the CS classroom
+\cite{niezgoda2006snitch, burrows2007efficient, arwin2006plagiarism, mei2010xml,
+zhao2010system, hattingh2013presenting, zhang2012ast} 
+and plagiarism education that teach about, and to deter, certain forms of plagiarism
+\cite{barrett2006embedding, aasheim2012plagiarism, rudolph2007anti, le2013educating}.  
+However, largely missing from the literature is how one defines plagiarism, and how to convey that definition clearly across the CS curriculum (i.e., in all classes, not just  CS ethics classes). 
+
+\newpage
+
+\bibliographystyle{ieeetr}
+\bibliography{biblio}
+
+\end{document}
